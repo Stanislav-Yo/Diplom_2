@@ -99,7 +99,7 @@ public class PaymentTest {
                 DataHelper.getApprovedCard().getNumber(),
                 DataHelper.getValidMonth(),
                 DataHelper.getValidYear(),
-                "1van 1van0v@",
+                DataHelper.getInvalidName(),
                 DataHelper.getValidCvc()
         );
         paymentPage.checkValidationError("Неверный формат");
@@ -113,7 +113,7 @@ public class PaymentTest {
                 DataHelper.getApprovedCard().getNumber(),
                 DataHelper.getValidMonth(),
                 DataHelper.getValidYear(),
-                "",
+                DataHelper.getEmptyField(),
                 DataHelper.getValidCvc()
         );
         paymentPage.checkValidationError("Поле обязательно для заполнения");
@@ -125,7 +125,7 @@ public class PaymentTest {
         var paymentPage = new MainPage().openPaymentPage();
         paymentPage.fillForm(
                 DataHelper.getApprovedCard().getNumber(),
-                "",
+                DataHelper.getEmptyField(),
                 DataHelper.getValidYear(),
                 DataHelper.getValidName(),
                 DataHelper.getValidCvc()
@@ -139,7 +139,7 @@ public class PaymentTest {
         var paymentPage = new MainPage().openPaymentPage();
         paymentPage.fillForm(
                 DataHelper.getApprovedCard().getNumber(),
-                "13",
+                DataHelper.getInvalidMonth(),
                 DataHelper.getValidYear(),
                 DataHelper.getValidName(),
                 DataHelper.getValidCvc()
@@ -169,7 +169,7 @@ public class PaymentTest {
         paymentPage.fillForm(
                 DataHelper.getApprovedCard().getNumber(),
                 DataHelper.getValidMonth(),
-                "",
+                DataHelper.getEmptyField(),
                 DataHelper.getValidName(),
                 DataHelper.getValidCvc()
         );
@@ -198,7 +198,7 @@ public class PaymentTest {
         paymentPage.fillForm(
                 DataHelper.getApprovedCard().getNumber(),
                 DataHelper.getValidMonth(),
-                "22",
+                DataHelper.getExpiredYear(),
                 DataHelper.getValidName(),
                 DataHelper.getValidCvc()
         );
@@ -212,7 +212,7 @@ public class PaymentTest {
         paymentPage.fillForm(
                 DataHelper.getApprovedCard().getNumber(),
                 DataHelper.getValidMonth(),
-                "31",
+                DataHelper.getFutureYear(),
                 DataHelper.getValidName(),
                 DataHelper.getValidCvc()
         );
@@ -225,7 +225,7 @@ public class PaymentTest {
         var paymentPage = new MainPage().openPaymentPage();
         paymentPage.fillForm(
                 DataHelper.getApprovedCard().getNumber(),
-                "00",
+                DataHelper.getZeroMonth(),
                 DataHelper.getValidYear(),
                 DataHelper.getValidName(),
                 DataHelper.getValidCvc()
@@ -253,7 +253,7 @@ public class PaymentTest {
     void shouldShowErrorForEmptyCardNumber() {
         var paymentPage = new MainPage().openPaymentPage();
         paymentPage.fillForm(
-                "",
+                DataHelper.getEmptyField(),
                 DataHelper.getValidMonth(),
                 DataHelper.getValidYear(),
                 DataHelper.getValidName(),

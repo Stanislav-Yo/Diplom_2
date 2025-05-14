@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import lombok.Value;
 import java.time.LocalDate;
 import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class DataHelper {
     private static final Faker faker = new Faker(new Locale("en"));
@@ -33,7 +34,9 @@ public class DataHelper {
     }
 
     public static String getValidYear() {
-        return "28";
+        int currentYear = LocalDate.now().getYear() % 100;
+        int year = currentYear + ThreadLocalRandom.current().nextInt(1, 6);
+        return String.format("%02d", year);
     }
 
     public static String getValidName() {
@@ -41,7 +44,7 @@ public class DataHelper {
     }
 
     public static String getValidCvc() {
-        return "123";
+        return String.format("%03d", ThreadLocalRandom.current().nextInt(1000));
     }
 
     public static String getInvalidCardNumber() {
@@ -65,7 +68,7 @@ public class DataHelper {
     }
 
     public static String getInvalidName() {
-        return "1van 1van0v@";
+        return "1vaн 1van0v@";
     }
 
     public static String getEmptyField() {
