@@ -14,4 +14,9 @@ public class MainPage {
         buyButton.click();
         return new PaymentPage();
     }
+
+    public CreditPage openCreditPage() {
+        creditButton.click();
+        return new CreditPage();
+    }
 }

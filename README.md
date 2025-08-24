@@ -21,7 +21,7 @@
 * IntelliJ IDEA
 * браузер Google Chrome
 * Docker Desktop
-* СУБД: Mysql 8
+* СУБД: Mysql 8 и PostgreSQL 15
 
 ### Установка и запуск
 
@@ -29,24 +29,33 @@
 2. Загрузить контейнеры mysql в терминале IDEA командой
 
     `docker-compose up`
-4. Во втором терминале запустить .jar-файл:
+3. Запуск SUT и тестов с MySQL
+    3.1. Запустить .jar-файл с MySQL:
 
-    `java -jar artifacts/aqa-shop.jar`
+    `java -jar artifacts/aqa-shop.jar -Dspring.datasource.url=jdbc:mysql://localhost:3306/app`
+     
+    3.2. Запустить автотесты с MySQL:
 
-6. В браузере открыть SUT в окне с адресом
+    `./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app" "-Ddb.user=app" "-Ddb.password=pass"`
 
-[http://localhost:8080/](http://localhost:8080/)
+4. Запуск SUT и тестов с PostgreSQL
+    4.1. Запустить .jar-файл с PostgreSQL:
 
-8. Запустить автотесты командой
+    `java -jar artifacts/aqa-shop.jar -Dspring.datasource.url=jdbc:postgresql://localhost:5432/app`
 
-   `./gradlew clean test`
+    4.2. Запустить автотесты с PostgreSQL:
 
-10. Остановить SUT командой CTRL + C
-11. Остановить контейнеры командой CTRL + C и после удалить контейнеры командой
+    `./gradlew clean test -Ddb.url=jdbc:postgresql://localhost:5432/app" "-Ddb.user=app -Ddb.password=pass"`
+
+5. В браузере открыть SUT в окне с адресом:
+
+http://localhost:8080/
+6. Остановить SUT командой CTRL + C 
+7. Остановить контейнеры командой CTRL + C и после удалить контейнеры командой
 
     `docker-compose down`
 
 
-Примеры
-### Лицензия
-Опишите условия лицензии
+8. Посмотреть отчёт о проведённом тестировании:
+
+   `./gradlew allureServe`

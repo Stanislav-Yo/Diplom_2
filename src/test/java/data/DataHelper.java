@@ -11,7 +11,7 @@ public class DataHelper {
 
     public static CardInfo getApprovedCard() {
         return new CardInfo(
-                "1111 2222 3333 4444",
+                "4444 4444 4444 4441",
                 getValidMonth(),
                 getValidYear(),
                 getValidName(),
@@ -21,7 +21,7 @@ public class DataHelper {
 
     public static CardInfo getDeclinedCard() {
         return new CardInfo(
-                "5555 6666 7777 8888",
+                "4444 4444 4444 4442",
                 getValidMonth(),
                 getValidYear(),
                 getValidName(),
